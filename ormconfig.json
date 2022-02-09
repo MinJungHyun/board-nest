@@ -1,0 +1,13 @@
+[
+  {
+    "name": "default",
+    "type": "mysql",
+    "host": "misookhe.iptime.org",
+    "port": 13306,
+    "username": "root",
+    "password": "pwd1234",
+    "database": "roady",
+    "synchronize": false,
+    "entities": ["dist/**/*.entity{.ts,.js}"]
+  }
+]

@@ -1,0 +1,73 @@
+nest new board-api
+npm i @nestjs/typeorm typeorm mysql @types/redis redis
+npm i typeorm-model-generator
+================================
+
+nest g module user
+nest g controller user
+nest g service user
+================================
+===DB====
+CREATE TABLE `user` (
+	`user_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+	`uuid` VARCHAR(40) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`name` VARCHAR(20) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`email` VARCHAR(100) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`password` VARCHAR(100) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`last_login_date` DATETIME NULL DEFAULT NULL,
+	`created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`user_id`)
+);
+================================
+
+typeorm-model-generator -h misookhe.iptime.org -d roady -p 13306 -u root -x pwd1234 -e mysql -o ./.generator
+================================
+* user.repository.ts 생성
+* User.ts => user.entity.ts 이름변경후 위치 변경
+* ormconfig.json 루트로 이동
+================================
+run script start:dev 
+>> 에러 떠서
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'pwd1234';
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'pwd1234';
+>> 실행
+
+================================
+yarn add bcryptjs joi
+yarn add -D @types/bcryptjs @types/joi
+================================
+user.module.ts
+>> 추가
+@Module({
+  imports: [TypeOrmModule.forFeature([UserRepository])],
+================================
+user.service.ts
+export class UserService {
+  constructor(private readonly UserRepository: UserRepository) {}
+}
+================================
+user.type.ts
+export type Login = {
+  email: string;
+  password: string;
+};
+export type Register = {
+  email: string;
+  name: string;
+  password: string;
+};
+export type UserInfo = {
+  uuid: string;
+  email: string;
+  name: string;
+};
+================================
+================================
+================================
+================================
+================================
+================================
+================================
+================================
+
