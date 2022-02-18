@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { User } from '../entities/User.entity';
+import { User } from '../entities/user/user.entity';
 import { Login, UserInfo, LoginUserInfo, Register } from './user.type';
 import { UserRepository } from './user.repository';
 import * as Bcrypt from 'bcryptjs';

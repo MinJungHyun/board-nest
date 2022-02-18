@@ -69,5 +69,33 @@ export type UserInfo = {
 ================================
 ================================
 ================================
-================================
 
+
+
+================================
+https://huniroom.tistory.com/entry/7NestJS-Configuration-%ED%99%98%EA%B2%BD%EB%B3%80%EC%88%98-%EC%84%A4%EC%A0%95-nestjsconfig-cross-env-joi
+npm i @nestjs/config //터미널에서 Nestjs 에서 제공하는 config 패키지 설치 
+npm i cross-env //환경 변수 파일을 조건에 따라 읽기 위한 패키지 설치
+npm i joi //환경변수 유효성 검사를 위한 패키지 설치
+프로젝트 최상단에 파일 생성
+.env.dev
+.env.test
+
+================================
+.env 파일 내용 설정
+DB_HOST=localhost
+DB_PORT=0000
+DB_USERNAME=xxxxx
+DB_PASSWORD=xxxxx
+DB_NAME=xxxxx
+
+================================
+cors 해결
+https://donggoolosori.github.io/2021/03/01/nest-cors/
+main.ts cors:true 추가
+const app = await NestFactory.create(AppModule, { cors: true });
+await app.listen(4100);
+================================
+================================
+================================
+================================
